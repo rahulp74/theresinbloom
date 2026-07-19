@@ -1,0 +1,102 @@
+/* TheResinBloom — Vibrant Botanical Resin design tokens */
+
+:root {
+  --lavender: #B57EDC;
+  --blush: #F8BBD0;
+  --rose: #EC407A;
+  --peach: #FFCCBC;
+  --sky: #81D4FA;
+  --mint: #A5D6A7;
+  --sage: #9CAF88;
+  --sunflower: #FFD54F;
+  --coral: #FF8A65;
+  --parchment: #FFF7FB;
+  --petal: #FFE4EF;
+  --leaf: #DFF4E1;
+  --mist: #E6F4FF;
+  --ink: #2B1F38;
+  --whatsapp: #25D366;
+
+  --gradient-petal: linear-gradient(135deg, #EC407A, #B57EDC);
+  --gradient-sunrise: linear-gradient(135deg, #FFD54F, #FF8A65, #EC407A);
+  --gradient-meadow: linear-gradient(135deg, #A5D6A7, #81D4FA);
+  --shadow-bloom: 0 20px 60px -20px rgba(236, 64, 122, 0.25),
+                  0 8px 24px -8px rgba(181, 126, 220, 0.20);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  color: var(--ink);
+  min-height: 100vh;
+  background:
+    radial-gradient(at 12% 8%,  rgba(248,187,208,0.55) 0px, transparent 45%),
+    radial-gradient(at 88% 12%, rgba(181,126,220,0.45) 0px, transparent 45%),
+    radial-gradient(at 78% 78%, rgba(129,212,250,0.40) 0px, transparent 45%),
+    radial-gradient(at 18% 88%, rgba(165,214,167,0.45) 0px, transparent 45%),
+    radial-gradient(at 50% 50%, rgba(255,213,79,0.28)  0px, transparent 55%),
+    linear-gradient(135deg, #FFF7FB 0%, #F5E6FF 50%, #E6F6FF 100%);
+  background-attachment: fixed;
+}
+
+::selection { background: rgba(236,64,122,0.4); color: #fff; }
+
+/* Utilities */
+.glass {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+.glass-bloom {
+  background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(248,187,208,0.3));
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: var(--shadow-bloom);
+}
+
+.text-gradient-bloom {
+  background: var(--gradient-sunrise);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-bloom {
+  background: var(--gradient-petal);
+  color: #fff;
+  box-shadow: 0 10px 30px -10px rgba(236,64,122,0.5);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.btn-bloom:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(236,64,122,0.6); }
+
+/* Drifting petals */
+.petal-float {
+  position: absolute;
+  top: -10vh;
+  pointer-events: none;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 4px 8px rgba(236,64,122,0.15));
+}
+
+@keyframes petalDrift {
+  0%   { transform: translate3d(0,-10vh,0) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.9; }
+  100% { transform: translate3d(30px,110vh,0) rotate(360deg); opacity: 0; }
+}
+.animate-petal-drift { animation: petalDrift 22s linear infinite; }
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: none; }
+}
+.animate-fade-up { animation: fadeUp .7s ease-out both; }
+
+@keyframes bloom {
+  0%,100% { transform: scale(1) rotate(0); }
+  50%     { transform: scale(1.08) rotate(6deg); }
+}
+.animate-bloom { animation: bloom 4s ease-in-out infinite; }
